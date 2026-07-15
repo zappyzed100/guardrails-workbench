@@ -51,3 +51,18 @@ UI の見た目・方向性を検討・実装するときは
 (submodule + sparse-checkout。例: `design-md/apple/DESIGN.md`・`design-md/linear.app/DESIGN.md`)。
 ui-ux-pro-max の検索(スタイル・パレットの一般則)と役割が違い、こちらは
 「実在ブランドの具体的なトーン・トークン・原則」を引く時に使う。
+
+## UI開発時のテスト方針
+
+ボタン遷移などの操作でエラーが起きないかの確認は、guardrails-kit 側に既に機構がある
+(`upstream/guardrails-kit/.guardrails/GUARDRAILS.md` §12.4「操作レール」):
+UI操作要素へのテストID属性必須化(`ui-missing-testid`・hard)+ Playwright MCP による
+実UI操作 + 再現できたバグの E2E spec 化(fix と同一コミット)+ `e2e` CI ジョブ
+(採用列 `ts-react-web@12` で Playwright が配線済み)。
+
+ただしこの workbench はまだ kit の稼働コピー未導入(ルートに `repo_scan.py`・`dev.py` 等が
+無い)かつ実装する UI 機能も検討中のため、上記機構は現時点では未充填(仕組みはあるが
+このリポジトリではまだ有効化されていない)。UI機能を実装する際は、まず
+`install_kit.py` の敷設(★欄に `ts-react-web@12` を指定)を完了させて上記機構を有効化し、
+ボタン遷移・画面遷移を含む E2E テストを機能と同一コミットで同梱する
+(仕組みに頼るだけでなく、この方針自体を実装前に確認する)。
