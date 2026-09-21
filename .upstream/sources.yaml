@@ -64,7 +64,7 @@ sources:
     repository: nextlevelbuilder/ui-ux-pro-max-skill
     integration: vendored-copy
     vendored-to: .claude/skills/
-    vendored-from-sha: f8ac5e1266dba8354ea96e19994d9f4345e7ec31 # GitHub main, v2.11.0
+    vendored-from-sha: 0d2b646cb6f48d8478f41417b2e8a5a30fd59175 # GitHub main, v2.13.0
     update: scripts/revendor_uipro.py # run weekly by update-upstreams.yml (PR only when the vendored copy changed); manual run also fine
     status: adopted
     special-handling:
